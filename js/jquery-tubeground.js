@@ -121,14 +121,13 @@
             if (currentVolume > 100 - options.increaseVolumeBy) currentVolume = 100 - options.increaseVolumeBy;
             player.setVolume(currentVolume + options.increaseVolumeBy);
         });
+        
+        // load yt iframe js api
+	    var tag = document.createElement('script');
+	    tag.src = "//www.youtube.com/iframe_api";
+	    var firstScriptTag = document.getElementsByTagName('script')[0];
+	    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     };
-
-    // load yt iframe js api
-
-    var tag = document.createElement('script');
-    tag.src = "//www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     // create plugin
 
