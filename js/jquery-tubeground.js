@@ -1,11 +1,11 @@
 /*
 *	jQuery-tubeground plugin
-*	Originally Written by Sean, MIT License ( http://www.seanmccambridge.com/tubeground/ )
+*	Originally Written by Sean, MIT License - jquery-tubular ( http://www.seanmccambridge.com/tubular/ )
 *	Maintained&Modified By Seung Yeon You ( @SeungYeonYou )
 *	License: Creative Commons BY-SA 4.0 ( http://creativecommons.org/licenses/by-sa/4.0/ )
 */
 
-;(function ($, window) {
+;(function ($) {
 
     // test for feature support and return if failure
     
@@ -44,6 +44,7 @@
         // set up iframe player, use global scope so YT api can talk
         window.player;
         window.onYouTubeIframeAPIReady = function() {
+	        console.log('iframeapiready');
             player = new YT.Player('tubeground-player', {
                 width: options.width,
                 height: Math.ceil(options.width / options.ratio),
