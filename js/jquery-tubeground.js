@@ -23,7 +23,8 @@
         volumeUpClass: 'tubeground-volume-up',
         volumeDownClass: 'tubeground-volume-down',
         increaseVolumeBy: 10,
-        start: 0
+        start: 0,
+        onVideoStart: function () {}
     };
 
     // methods
@@ -41,6 +42,9 @@
         $('html,body').css({'width': '100%', 'height': '100%'});
         $body.prepend(tubegroundContainer);
         $node.css({position: 'relative', 'z-index': options.wrapperZIndex});
+        
+        //window 객체에 함수 바인딩
+        window.onVideoStart = options.onVideoStart();
 
         // set up iframe player, use global scope so YT api can talk
         window.player;
@@ -67,6 +71,7 @@
             if (options.mute) e.target.mute();
             e.target.seekTo(options.start);
             e.target.playVideo();
+            window.onVideoStart();
         };
 
         window.onPlayerStateChange = function(state) {
