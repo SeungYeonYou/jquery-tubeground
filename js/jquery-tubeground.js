@@ -42,9 +42,6 @@
         $('html,body').css({'width': '100%', 'height': '100%'});
         $body.prepend(tubegroundContainer);
         $node.css({position: 'relative', 'z-index': options.wrapperZIndex});
-        
-        //window 객체에 함수 바인딩
-        window.onVideoStart = options.onVideoStart();
 
         // set up iframe player, use global scope so YT api can talk
         window.player;
@@ -71,12 +68,15 @@
             if (options.mute) e.target.mute();
             e.target.seekTo(options.start);
             e.target.playVideo();
-            window.onVideoStart();
         };
 
         window.onPlayerStateChange = function(state) {
             if (state.data === 0 && options.repeat) { // video ended and repeat option is set true
                 player.seekTo(options.start); // restart
+            }
+            if (state.data === 1) {
+	            // 재생중 - onVideoStart 시작
+	            options.onVideoStart();
             }
         };
 
