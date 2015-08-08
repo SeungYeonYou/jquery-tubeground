@@ -1,6 +1,5 @@
-# jquery-tubular
-Automatically exported from code.google.com/p/jquery-tubular
+# jquery-tubeground
 
-Original Author & Download Link : http://www.seanmccambridge.com/tubular/
+Original tubular Download Link : http://www.seanmccambridge.com/tubular/
 
-Maintained by SeungYeonYou.
+Maintained/Modified by SeungYeonYou.
