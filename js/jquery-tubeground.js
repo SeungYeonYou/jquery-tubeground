@@ -135,8 +135,10 @@
     $.fn.tubeground = function (options) {
 	    var tgelems = $('#tubeground-container,#tubeground-shield');
 	    if (tgelems.length == 0) {
-		    tubeground(this, options);
-			return true;
+			return tubeground(this, options);
+	    } else if (options.force) {
+		    tgelems.remove();
+		    return tubeground(this, options);
 	    } else {
 		    return false;
 	    }
