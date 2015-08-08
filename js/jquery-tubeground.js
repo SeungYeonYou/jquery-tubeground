@@ -133,9 +133,13 @@
     // create plugin
 
     $.fn.tubeground = function (options) {
-	    $('#tubeground-container,#tubeground-shield').remove();
-        tubeground(this, options);
-        return true;
+	    var tgelems = $('#tubeground-container,#tubeground-shield');
+	    if (tgelems.length == 0) {
+		    tubeground(this, options);
+			return true;
+	    } else {
+		    return false;
+	    }
     };
 
 })(jQuery, window);
