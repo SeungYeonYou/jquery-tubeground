@@ -1,14 +1,9 @@
-/* jQuery tubular plugin
-|* by Sean McCambridge
-|* http://www.seanmccambridge.com/tubular
-|* version: 1.0
-|* updated: October 1, 2012
-|* since 2010
-|* licensed under the MIT License
-|* Enjoy.
-|* 
-|* Thanks,
-|* Sean */
+/*
+*	jQuery-tubeground plugin
+*	Originally Written by Sean, MIT License ( http://www.seanmccambridge.com/tubeground/ )
+*	Maintained&Modified By Seung Yeon You ( @SeungYeonYou )
+*	License: Creative Commons BY-SA 4.0 ( http://creativecommons.org/licenses/by-sa/4.0/ )
+*/
 
 ;(function ($, window) {
 
@@ -22,34 +17,34 @@
         repeat: true,
         width: $(window).width(),
         wrapperZIndex: 99,
-        playButtonClass: 'tubular-play',
-        pauseButtonClass: 'tubular-pause',
-        muteButtonClass: 'tubular-mute',
-        volumeUpClass: 'tubular-volume-up',
-        volumeDownClass: 'tubular-volume-down',
+        playButtonClass: 'tubeground-play',
+        pauseButtonClass: 'tubeground-pause',
+        muteButtonClass: 'tubeground-mute',
+        volumeUpClass: 'tubeground-volume-up',
+        volumeDownClass: 'tubeground-volume-down',
         increaseVolumeBy: 10,
         start: 0
     };
 
     // methods
 
-    var tubular = function(node, options) { // should be called on the wrapper div
+    var tubeground = function(node, options) { // should be called on the wrapper div
         var options = $.extend({}, defaults, options),
             $body = $('body') // cache body node
             $node = $(node); // cache wrapper node
 
         // build container
-        var tubularContainer = '<div id="tubular-container" style="overflow: hidden; position: fixed; z-index: 1; width: 100%; height: 100%"><div id="tubular-player" style="position: absolute"></div></div><div id="tubular-shield" style="width: 100%; height: 100%; z-index: 2; position: absolute; left: 0; top: 0;"></div>';
+        var tubegroundContainer = '<div id="tubeground-container" style="overflow: hidden; position: fixed; z-index: 1; width: 100%; height: 100%"><div id="tubeground-player" style="position: absolute"></div></div><div id="tubeground-shield" style="width: 100%; height: 100%; z-index: 2; position: absolute; left: 0; top: 0;"></div>';
 
-        // set up css prereq's, inject tubular container and set up wrapper defaults
+        // set up css prereq's, inject tubeground container and set up wrapper defaults
         $('html,body').css({'width': '100%', 'height': '100%'});
-        $body.prepend(tubularContainer);
+        $body.prepend(tubegroundContainer);
         $node.css({position: 'relative', 'z-index': options.wrapperZIndex});
 
         // set up iframe player, use global scope so YT api can talk
         window.player;
         window.onYouTubeIframeAPIReady = function() {
-            player = new YT.Player('tubular-player', {
+            player = new YT.Player('tubeground-player', {
                 width: options.width,
                 height: Math.ceil(options.width / options.ratio),
                 videoId: options.videoId,
@@ -85,22 +80,22 @@
                 pWidth, // player width, to be defined
                 height = $(window).height(),
                 pHeight, // player height, tbd
-                $tubularPlayer = $('#tubular-player');
+                $tubegroundPlayer = $('#tubeground-player');
 
             // when screen aspect ratio differs from video, video must center and underlay one dimension
 
             if (width / options.ratio < height) { // if new video height < window height (gap underneath)
                 pWidth = Math.ceil(height * options.ratio); // get new player width
-                $tubularPlayer.width(pWidth).height(height).css({left: (width - pWidth) / 2, top: 0}); // player width is greater, offset left; reset top
+                $tubegroundPlayer.width(pWidth).height(height).css({left: (width - pWidth) / 2, top: 0}); // player width is greater, offset left; reset top
             } else { // new video width < window width (gap to right)
                 pHeight = Math.ceil(width / options.ratio); // get new player height
-                $tubularPlayer.width(width).height(pHeight).css({left: 0, top: (height - pHeight) / 2}); // player height is greater, offset top; reset left
+                $tubegroundPlayer.width(width).height(pHeight).css({left: 0, top: (height - pHeight) / 2}); // player height is greater, offset top; reset left
             }
 
         }
 
         // events
-        $(window).on('resize.tubular', function() {
+        $(window).on('resize.tubeground', function() {
             resize();
         })
 
@@ -136,11 +131,11 @@
 
     // create plugin
 
-    $.fn.tubular = function (options) {
+    $.fn.tubeground = function (options) {
         return this.each(function () {
-            if (!$.data(this, 'tubular_instantiated')) { // let's only run one
-                $.data(this, 'tubular_instantiated', 
-                tubular(this, options));
+            if (!$.data(this, 'tubeground_instantiated')) { // let's only run one
+                $.data(this, 'tubeground_instantiated', 
+                tubeground(this, options));
             }
         });
     }
