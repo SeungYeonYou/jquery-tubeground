@@ -5,7 +5,7 @@
 *	License: Creative Commons BY-SA 4.0 ( http://creativecommons.org/licenses/by-sa/4.0/ )
 */
 
-;(function ($, window) {
+;(function ($, window, document) {
 
     // test for feature support and return if failure
     
@@ -142,4 +142,4 @@
 	    }
     };
 
-})(jQuery, window);
+})(jQuery, window, document);
