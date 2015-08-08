@@ -45,7 +45,7 @@
         // set up iframe player, use global scope so YT api can talk
         window.player;
         window.onYouTubeIframeAPIReady = function() {
-            player = new YT.Player('tubeground-player', {
+            window.player = new YT.Player('tubeground-player', {
                 width: options.width,
                 height: Math.ceil(options.width / options.ratio),
                 videoId: options.videoId,
