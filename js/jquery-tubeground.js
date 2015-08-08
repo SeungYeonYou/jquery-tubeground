@@ -5,7 +5,7 @@
 *	License: Creative Commons BY-SA 4.0 ( http://creativecommons.org/licenses/by-sa/4.0/ )
 */
 
-;(function ($) {
+;(function ($, window) {
 
     // test for feature support and return if failure
     
@@ -29,8 +29,9 @@
     // methods
 
     var tubeground = function(node, options) { // should be called on the wrapper div
+	    
         var options = $.extend({}, defaults, options),
-            $body = $('body') // cache body node
+            $body = $('body'), // cache body node
             $node = $(node); // cache wrapper node
 
         // build container
@@ -44,7 +45,6 @@
         // set up iframe player, use global scope so YT api can talk
         window.player;
         window.onYouTubeIframeAPIReady = function() {
-	        console.log('iframeapiready');
             player = new YT.Player('tubeground-player', {
                 width: options.width,
                 height: Math.ceil(options.width / options.ratio),
@@ -60,20 +60,20 @@
                     'onStateChange': onPlayerStateChange
                 }
             });
-        }
+        };
 
         window.onPlayerReady = function(e) {
             resize();
             if (options.mute) e.target.mute();
             e.target.seekTo(options.start);
             e.target.playVideo();
-        }
+        };
 
         window.onPlayerStateChange = function(state) {
             if (state.data === 0 && options.repeat) { // video ended and repeat option is set true
                 player.seekTo(options.start); // restart
             }
-        }
+        };
 
         // resize handler updates width, height and offset of player after resize/init
         var resize = function() {
@@ -93,12 +93,12 @@
                 $tubegroundPlayer.width(width).height(pHeight).css({left: 0, top: (height - pHeight) / 2}); // player height is greater, offset top; reset left
             }
 
-        }
+        };
 
         // events
         $(window).on('resize.tubeground', function() {
             resize();
-        })
+        });
 
         $('body').on('click','.' + options.playButtonClass, function(e) { // play button
             e.preventDefault();
@@ -120,8 +120,8 @@
             var currentVolume = player.getVolume();
             if (currentVolume > 100 - options.increaseVolumeBy) currentVolume = 100 - options.increaseVolumeBy;
             player.setVolume(currentVolume + options.increaseVolumeBy);
-        })
-    }
+        });
+    };
 
     // load yt iframe js api
 
@@ -133,12 +133,9 @@
     // create plugin
 
     $.fn.tubeground = function (options) {
-        return this.each(function () {
-            if (!$.data(this, 'tubeground_instantiated')) { // let's only run one
-                $.data(this, 'tubeground_instantiated', 
-                tubeground(this, options));
-            }
-        });
-    }
+	    $('#tubeground-container,#tubeground-shield').remove();
+        tubeground(this, options);
+        return true;
+    };
 
 })(jQuery, window);
