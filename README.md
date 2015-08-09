@@ -1,6 +1,6 @@
 # jquery-tubeground
 
-#### Scroll Down for English version.
+**[Scroll down or click here for English version.](#jquery-tubeground-1)**
 
 **유튜브 배경 화면을 간단하게 만드는 방법.**
 
