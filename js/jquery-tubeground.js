@@ -1,4 +1,4 @@
-/*
+/*!
 *	jQuery-tubeground plugin
 *	Originally Written by Sean, MIT License - jquery-tubular ( http://www.seanmccambridge.com/tubular/ )
 *	Maintained&Modified By Seung Yeon You ( @SeungYeonYou )
@@ -12,7 +12,7 @@
     // defaults
     var defaults = {
         ratio: 16/9, // usually either 4/3 or 16/9 -- tweak as needed
-        videoId: 'ZCAnLxRvNNc', // toy robot in space is a good default, no?
+        videoId: 'O2mzNqRN4iw', // toy robot in space is a good default, no?
         mute: true,
         repeat: true,
         width: $(window).width(),
@@ -51,10 +51,16 @@
                 height: Math.ceil(options.width / options.ratio),
                 videoId: options.videoId,
                 playerVars: {
-                    controls: 0,
-                    showinfo: 0,
-                    modestbranding: 1,
-                    wmode: 'transparent'
+                    'modestbranding': 1,
+                    'wmode': 'transparent',
+					'autoplay' : 1,
+					'rel' : 0,
+					'showinfo' : 0,
+					'showsearch' : 0,
+					'controls' : 0,
+					'loop' : 1,
+					'enablejsapi' : 1,
+					'playlist': options.videoId
                 },
                 events: {
                     'onReady': onPlayerReady,
@@ -71,9 +77,9 @@
         };
 
         window.onPlayerStateChange = function(state) {
-            if (state.data === 0 && options.repeat) { // video ended and repeat option is set true
+            /*if (state.data === 0 && options.repeat) { // video ended and repeat option is set true
                 player.seekTo(options.start); // restart
-            }
+            }*/
             if (state.data === 1) {
 	            // 재생중 - onVideoStart 시작
 	            options.onVideoStart();
