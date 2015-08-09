@@ -1,6 +1,6 @@
-# jquery-tubeground
+# Tubeground (jquery-tubeground)
 
-**[Scroll down or click here for English version.](#jquery-tubeground-1)**
+[Scroll down or click here for English version.](#tubeground-jquery-tubeground-1)
 
 **유튜브 배경 화면을 간단하게 만드는 방법.**
 
@@ -10,7 +10,7 @@
 2. 페이지 래퍼 (예시로는, #wrapper 를 사용하겠습니다) 를 만들고, 로드 후에 이 코드를 실행하세요 :
   
   ```
-  $('#wrapper').tubeground({videoId:'your-video-id'});
+  $('#wrapper').tubeground({videoId:'your-youtube-video-id'});
   ```
 3. 그리고 짜잔! 완료되었습니다.
 
@@ -38,7 +38,7 @@ http://creativecommons.org/licenses/by-sa/4.0/deed.ko
 
 
 
-# jquery-tubeground
+# Tubeground (jquery-tubeground)
 
 **Create Youtube-background webpage easily.**
 
@@ -48,7 +48,7 @@ Usage
 2. create page wrapper (for instance, #wrapper) and run this simple code when loaded :
   
   ```
-  $('#wrapper').tubeground({videoId:'your-video-id'});
+  $('#wrapper').tubeground({videoId:'your-youtube-video-id'});
   ```
 3. and voila! done.
 
